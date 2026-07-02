@@ -13,7 +13,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '24'
       - name: Install dependencies
         run: npm install
       - name: Build the application
@@ -22,6 +22,12 @@ jobs:
         run: npm run lint
       - name: test the application
         run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Deploy to server
         run: |
           echo "Deploying the application..."
