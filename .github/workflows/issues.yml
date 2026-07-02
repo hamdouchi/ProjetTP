@@ -2,17 +2,11 @@ name: issues workflow
 on:
   workflow_dispatch:
   issues:
-    types: [opened, edited, closed]
 jobs:
   handle-issues:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Handle issues
-        run: |
-          echo "Handling issue event..."
       - name: GitHub context issues
         run: |
-          echo "GitHub context:"
-          echo "${{ toJson(github) }}"
+          echo "Event information"
+          echo "${{ toJson(github.event) }}"
